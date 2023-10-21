@@ -68,7 +68,9 @@ namespace Library_Management
                         switch (roll)
                         {
                             case "Administrator":
-                                MessageBox.Show("admin");
+                                AdminForm adminForm = new AdminForm();
+                                adminForm.uName = username;
+                                adminForm.ShowDialog();
                                 break;
 
                             case "Librarian":

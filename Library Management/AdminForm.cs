@@ -12,9 +12,15 @@ namespace Library_Management
 {
     public partial class AdminForm : Form
     {
+        public string uName { get; set; }
         public AdminForm()
         {
             InitializeComponent();
+        }
+
+        private void AdminForm_Load(object sender, EventArgs e)
+        {
+            label1.Text = "Welocome " + uName;
         }
     }
 }
