@@ -42,6 +42,7 @@ namespace Library_Management
             string insertQuery = "INSERT INTO users (userName,name,password,roll) VALUES ('" + txtuName.Text + "','" + txtName.Text + "','" + txtPassword.Text + "','" + comBoxRoll.Text + "')";
             exeQuery(insertQuery);
             gridLoadItem();
+            txtClear();
         }
 
         private void userDataGridView_MouseClick(object sender, MouseEventArgs e)
@@ -96,9 +97,74 @@ namespace Library_Management
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            string updateQuery = "UPDATE users SET userName= '"+txtuName.Text+"',name='"+txtName.Text+"',password='"+txtPassword.Text+"',roll='"+comBoxRoll.Text+"' WHERE user_id="+int.Parse(txtuId.Text);
-            exeQuery(updateQuery);
-            gridLoadItem();
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result = MessageBox.Show("Do you want to update this ?", "Warning!!!", buttons);
+            if (result == DialogResult.Yes)
+            {
+                string updateQuery = "UPDATE users SET userName= '" + txtuName.Text + "',name='" + txtName.Text + "',password='" + txtPassword.Text + "',roll='" + comBoxRoll.Text + "' WHERE user_id=" + int.Parse(txtuId.Text);
+                exeQuery(updateQuery);
+                gridLoadItem();
+                txtClear();
+            }
+            else
+            {
+                txtClear();
+            }
+
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result = MessageBox.Show("Do you want to delete this ?", "Warning!!!", buttons);
+            if (result == DialogResult.Yes)
+            {
+                string deleteQuery = "delete from users where user_id =" + int.Parse(txtuId.Text);
+                exeQuery(deleteQuery);
+                gridLoadItem();
+                txtClear();
+            }
+            else
+            {
+                txtClear();
+            }
+        }
+
+        public void txtClear()
+        {
+            txtuId.Text = "";
+            txtuName.Text = "";
+            txtName.Text = "";
+            txtPassword.Text = "";
+            comBoxRoll.Text = "";
+            txtuName.Focus();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            MySqlDataReader dr;
+            cmd = new MySqlCommand("select * from users where user_id= " + txtuId.Text, con);
+            openCon();
+            dr = cmd.ExecuteReader();
+
+            if (dr.Read())
+            {
+                txtuName.Text = dr.GetString("userName");
+                txtName.Text = dr.GetString("name");
+                txtPassword.Text = dr.GetString("password");
+                comBoxRoll.Text = dr.GetString("roll");
+            }
+            else
+            {
+                MessageBox.Show("User not found");
+                txtClear();
+            }
+            closeCon();
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            txtClear();
         }
     }
 }

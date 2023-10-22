@@ -44,6 +44,7 @@
             btnDelete = new Button();
             btnUpdate = new Button();
             btnClear = new Button();
+            btnSearch = new Button();
             ((System.ComponentModel.ISupportInitialize)userDataGridView).BeginInit();
             SuspendLayout();
             // 
@@ -73,7 +74,7 @@
             txtuId.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtuId.Location = new Point(132, 61);
             txtuId.Name = "txtuId";
-            txtuId.Size = new Size(219, 29);
+            txtuId.Size = new Size(141, 29);
             txtuId.TabIndex = 2;
             // 
             // txtuName
@@ -186,6 +187,7 @@
             btnDelete.TabIndex = 13;
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = false;
+            btnDelete.Click += btnDelete_Click;
             // 
             // btnUpdate
             // 
@@ -210,6 +212,19 @@
             btnClear.TabIndex = 15;
             btnClear.Text = "Clear";
             btnClear.UseVisualStyleBackColor = false;
+            btnClear.Click += btnClear_Click;
+            // 
+            // btnSearch
+            // 
+            btnSearch.BackColor = Color.FromArgb(192, 255, 255);
+            btnSearch.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSearch.Location = new Point(288, 60);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(63, 29);
+            btnSearch.TabIndex = 16;
+            btnSearch.Text = "Search";
+            btnSearch.UseVisualStyleBackColor = false;
+            btnSearch.Click += btnSearch_Click;
             // 
             // AdminForm
             // 
@@ -217,6 +232,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(856, 479);
+            Controls.Add(btnSearch);
             Controls.Add(btnClear);
             Controls.Add(btnUpdate);
             Controls.Add(btnDelete);
@@ -260,5 +276,6 @@
         private Button btnDelete;
         private Button btnUpdate;
         private Button btnClear;
+        private Button btnSearch;
     }
 }
