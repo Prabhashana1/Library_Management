@@ -198,6 +198,7 @@
             btnUpdate.TabIndex = 14;
             btnUpdate.Text = "Update";
             btnUpdate.UseVisualStyleBackColor = false;
+            btnUpdate.Click += btnUpdate_Click;
             // 
             // btnClear
             // 

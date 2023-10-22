@@ -24,7 +24,7 @@ namespace Library_Management
         private void AdminForm_Load(object sender, EventArgs e)
         {
             gridLoadItem();
-            
+
         }
 
         public void gridLoadItem()
@@ -55,14 +55,14 @@ namespace Library_Management
 
         public void openCon()
         {
-            if (con.State== ConnectionState.Closed)
+            if (con.State == ConnectionState.Closed)
             {
                 con.Open();
             }
         }
         public void closeCon()
         {
-            if(con.State== ConnectionState.Open)
+            if (con.State == ConnectionState.Open)
             {
                 con.Close();
             }
@@ -73,7 +73,7 @@ namespace Library_Management
             try
             {
                 openCon();
-                cmd = new MySqlCommand(query,con);
+                cmd = new MySqlCommand(query, con);
 
                 if (cmd.ExecuteNonQuery() == 1)
                 {
@@ -92,6 +92,13 @@ namespace Library_Management
             {
                 closeCon();
             }
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            string updateQuery = "UPDATE users SET userName= '"+txtuName.Text+"',name='"+txtName.Text+"',password='"+txtPassword.Text+"',roll='"+comBoxRoll.Text+"' WHERE user_id="+int.Parse(txtuId.Text);
+            exeQuery(updateQuery);
+            gridLoadItem();
         }
     }
 }
