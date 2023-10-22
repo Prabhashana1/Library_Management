@@ -132,13 +132,16 @@
             // 
             // userDataGridView
             // 
+            userDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             userDataGridView.BackgroundColor = SystemColors.ControlLight;
             userDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             userDataGridView.Location = new Point(362, 12);
             userDataGridView.Name = "userDataGridView";
             userDataGridView.RowTemplate.Height = 25;
+            userDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             userDataGridView.Size = new Size(482, 455);
             userDataGridView.TabIndex = 9;
+            userDataGridView.MouseClick += userDataGridView_MouseClick;
             // 
             // lblroll
             // 
@@ -154,6 +157,7 @@
             // 
             comBoxRoll.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             comBoxRoll.FormattingEnabled = true;
+            comBoxRoll.Items.AddRange(new object[] { "Administrator", "Librarian", "Member" });
             comBoxRoll.Location = new Point(132, 307);
             comBoxRoll.Name = "comBoxRoll";
             comBoxRoll.Size = new Size(219, 29);
@@ -229,6 +233,7 @@
             Controls.Add(lbluserId);
             Controls.Add(label1);
             Name = "AdminForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "AdminForm";
             Load += AdminForm_Load;
             ((System.ComponentModel.ISupportInitialize)userDataGridView).EndInit();
