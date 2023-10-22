@@ -55,6 +55,8 @@ namespace Library_Management
                 if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(roll))
                 {
                     MessageBox.Show("Please Enter User Details Correctly");
+                    txtClear();
+                    comBoxRoll.Focus();
                 }
                 else
                 {
@@ -95,6 +97,9 @@ namespace Library_Management
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                txtClear();
+                comBoxRoll.Focus();
+
             }
             finally
             {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,7 @@ namespace Library_Management
 {
     public partial class AdminForm : Form
     {
+        MySqlConnection con = new MySqlConnection("server=127.0.0.1; user=root;database=library_management; password=");
         public string uName { get; set; }
         public AdminForm()
         {
@@ -21,6 +23,12 @@ namespace Library_Management
         private void AdminForm_Load(object sender, EventArgs e)
         {
             label1.Text = "Welocome " + uName;
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+             
+
         }
     }
 }
