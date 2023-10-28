@@ -139,7 +139,7 @@
             comBoxRoll.DropDownStyle = ComboBoxStyle.DropDownList;
             comBoxRoll.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             comBoxRoll.FormattingEnabled = true;
-            comBoxRoll.Items.AddRange(new object[] { "Administrator", "Librarian", "Member" });
+            comBoxRoll.Items.AddRange(new object[] { "administrator", "librarian", "member" });
             comBoxRoll.Location = new Point(158, 122);
             comBoxRoll.Name = "comBoxRoll";
             comBoxRoll.Size = new Size(168, 29);

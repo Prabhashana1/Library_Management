@@ -6,7 +6,7 @@ namespace Library_Management
 {
     public partial class LoginForm : Form
     {
-        MySqlConnection con = new MySqlConnection("server=127.0.0.1; user=root;database=library_management; password=");
+        MySqlConnection con = new MySqlConnection("server=127.0.0.1; user=root;database=library; password=");
 
         public LoginForm()
         {
@@ -50,7 +50,7 @@ namespace Library_Management
             {
                 string username = txtName.Text.ToString();
                 string password = txtPass.Text.ToString();
-                string roll = comBoxRoll.Text;
+                string roll = comBoxRoll.SelectedItem.ToString();
 
                 if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(roll))
                 {
@@ -61,7 +61,7 @@ namespace Library_Management
                 else
                 {
                     con.Open();
-                    MySqlDataAdapter da = new MySqlDataAdapter("select count(*) from users where userName='" + username + "' and password = '" + password + "' and roll = '" + roll + "'", con);
+                    MySqlDataAdapter da = new MySqlDataAdapter("select count(*) from "+roll+" where userName='" + username + "' and password = '" + password + "'", con);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
                     if (dt.Rows[0][0].ToString() == "1")
@@ -69,17 +69,19 @@ namespace Library_Management
 
                         switch (roll)
                         {
-                            case "Administrator":
+                            case "administrator":
                                 AdminForm adminForm = new AdminForm();
-                                adminForm.uName = username;
                                 adminForm.ShowDialog();
+                                this.Close();
                                 break;
 
-                            case "Librarian":
-                                MessageBox.Show("libra");
+                            case "librarian":
+                                LibrarianForm librarianForm = new LibrarianForm();
+                                librarianForm.ShowDialog();
+                                this.Close();
                                 break;
 
-                            case "Member":
+                            case "member":
                                 MessageBox.Show("member");
                                 break;
                         }
