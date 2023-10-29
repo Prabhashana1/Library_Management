@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace Library_Management
 {
@@ -17,14 +19,187 @@ namespace Library_Management
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            LibrarianForm librarianForm = new LibrarianForm();
-            librarianForm.ShowDialog();
-            this.Close();
+        MySqlConnection con = new MySqlConnection("server=127.0.0.1; user=root;database=library; password=");
+        MySqlCommand cmd;
 
+
+        private void ManageMemberForm_Load(object sender, EventArgs e)
+        {
+            gridLoadItem();
+        }
+
+        public void txtClear()
+        {
+            txtMemberID.Text = "";
+            txtname.Text = "";
+            txtEmail.Text = "";
+            txtAddress.Text = "";
+            txtPhoneNO.Text = "";
+            txtUname.Text = "";
+            txtPassword.Text = "";
+            txtname.Focus();
+        }
+
+        public void openCon()
+        {
+            if (con.State == ConnectionState.Closed)
+            {
+                con.Open();
+            }
+        }
+        public void closeCon()
+        {
+            if (con.State == ConnectionState.Open)
+            {
+                con.Close();
+            }
 
         }
+        public void exeQuery(string query)
+        {
+            try
+            {
+                openCon();
+                cmd = new MySqlCommand(query, con);
+
+                if (cmd.ExecuteNonQuery() == 1)
+                {
+                    MessageBox.Show("Query Executed");
+                }
+                else
+                {
+                    MessageBox.Show("Query Not Executed!!! Please Try Again");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                closeCon();
+            }
+        }
+
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            txtClear();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            MySqlDataReader dr;
+            cmd = new MySqlCommand("select * from member where memberID= " + txtMemberID.Text, con);
+            openCon();
+            dr = cmd.ExecuteReader();
+
+            if (dr.Read())
+            {
+                txtname.Text = dr.GetString("name");
+                txtEmail.Text = dr.GetString("email");
+                txtAddress.Text = dr.GetString("address");
+                txtPhoneNO.Text = dr.GetString("phoneNO");
+                txtUname.Text = dr.GetString("userName");
+                txtPassword.Text = dr.GetString("password");
+            }
+            else
+            {
+                MessageBox.Show("User not found");
+                txtClear();
+            }
+            closeCon();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            string insertQuery = "INSERT INTO member (name,email,address,phoneNO,userName,password) VALUES ('" + txtname.Text + "','" + txtEmail.Text + "','" + txtAddress.Text + "','" + txtPhoneNO.Text + "','" + txtUname.Text + "','" + txtPassword + "')";
+            exeQuery(insertQuery);
+            gridLoadItem();
+            txtClear();
+        }
+
+        public void gridLoadItem()
+        {
+            string selectQuery = "select * from member";
+            DataTable table = new DataTable();
+            MySqlDataAdapter adapter = new MySqlDataAdapter(selectQuery, con);
+            adapter.Fill(table);
+            memberDataGridView.DataSource = table;
+        }
+
+        private void memberDataGridView_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void memberDataGridView_MouseClick(object sender, MouseEventArgs e)
+        {
+            txtMemberID.Text = memberDataGridView.CurrentRow.Cells[0].Value.ToString();
+            txtname.Text = memberDataGridView.CurrentRow.Cells[1].Value.ToString();
+            txtEmail.Text = memberDataGridView.CurrentRow.Cells[2].Value.ToString();
+            txtAddress.Text = memberDataGridView.CurrentRow.Cells[3].Value.ToString();
+            txtPhoneNO.Text = memberDataGridView.CurrentRow.Cells[4].Value.ToString();
+            txtUname.Text = memberDataGridView.CurrentRow.Cells[5].Value.ToString();
+            txtPassword.Text = memberDataGridView.CurrentRow.Cells[6].Value.ToString();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            if (txtMemberID.Text == string.Empty)
+            {
+                MessageBox.Show("Please Select who want you update");
+            }
+            else
+            {
+                MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                DialogResult result = MessageBox.Show("Do you want to update this ?", "Warning!!!", buttons);
+                if (result == DialogResult.Yes)
+                {
+                    string updateQuery = "UPDATE member SET name= '" + txtname.Text + "',email='" + txtEmail.Text + "',address='" + txtAddress.Text + "',phoneNO='" + txtPhoneNO.Text + "',userName='" + txtUname.Text + "',password='" + txtPassword.Text + "' WHERE memberID=" + int.Parse(txtMemberID.Text);
+                    exeQuery(updateQuery);
+                    gridLoadItem();
+                    txtClear();
+                }
+                else
+                {
+                    txtClear();
+                }
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (txtMemberID.Text == string.Empty)
+            {
+                MessageBox.Show("Please Select who want you delete");
+            }
+            else
+            {
+                MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                DialogResult result = MessageBox.Show("Do you want to delete this ?", "Warning!!!", buttons);
+                if (result == DialogResult.Yes)
+                {
+                    string deleteQuery = "delete from member where memberID =" + int.Parse(txtMemberID.Text);
+                    exeQuery(deleteQuery);
+                    gridLoadItem();
+                    txtClear();
+                }
+                else
+                {
+                    txtClear();
+                }
+            }
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
+
+
 }
+
+
+

@@ -48,7 +48,7 @@
             panelLeft.Dock = DockStyle.Left;
             panelLeft.Location = new Point(0, 0);
             panelLeft.Name = "panelLeft";
-            panelLeft.Size = new Size(200, 508);
+            panelLeft.Size = new Size(200, 456);
             panelLeft.TabIndex = 0;
             // 
             // pictureBox1
@@ -117,14 +117,14 @@
             panelForm.Dock = DockStyle.Fill;
             panelForm.Location = new Point(200, 0);
             panelForm.Name = "panelForm";
-            panelForm.Size = new Size(741, 508);
+            panelForm.Size = new Size(911, 456);
             panelForm.TabIndex = 1;
             // 
             // LibrarianForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(941, 508);
+            ClientSize = new Size(1111, 456);
             Controls.Add(panelForm);
             Controls.Add(panelLeft);
             Name = "LibrarianForm";
