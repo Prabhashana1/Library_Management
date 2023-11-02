@@ -146,7 +146,7 @@
             // txtPhoneNO
             // 
             txtPhoneNO.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            txtPhoneNO.Location = new Point(137, 206);
+            txtPhoneNO.Location = new Point(137, 288);
             txtPhoneNO.Name = "txtPhoneNO";
             txtPhoneNO.Size = new Size(169, 27);
             txtPhoneNO.TabIndex = 28;
@@ -154,7 +154,7 @@
             // txtAddress
             // 
             txtAddress.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            txtAddress.Location = new Point(137, 166);
+            txtAddress.Location = new Point(137, 248);
             txtAddress.Name = "txtAddress";
             txtAddress.Size = new Size(169, 27);
             txtAddress.TabIndex = 27;
@@ -162,7 +162,7 @@
             // txtEmail
             // 
             txtEmail.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            txtEmail.Location = new Point(137, 125);
+            txtEmail.Location = new Point(137, 207);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(169, 27);
             txtEmail.TabIndex = 26;
@@ -187,7 +187,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.Location = new Point(18, 168);
+            label5.Location = new Point(18, 250);
             label5.Name = "label5";
             label5.Size = new Size(82, 20);
             label5.TabIndex = 22;
@@ -197,7 +197,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.Location = new Point(18, 128);
+            label4.Location = new Point(18, 210);
             label4.Name = "label4";
             label4.Size = new Size(55, 20);
             label4.TabIndex = 21;
@@ -239,7 +239,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label6.Location = new Point(18, 209);
+            label6.Location = new Point(18, 291);
             label6.Name = "label6";
             label6.Size = new Size(90, 20);
             label6.TabIndex = 23;
@@ -249,7 +249,7 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label7.Location = new Point(18, 256);
+            label7.Location = new Point(18, 128);
             label7.Name = "label7";
             label7.Size = new Size(99, 20);
             label7.TabIndex = 36;
@@ -259,7 +259,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.Location = new Point(18, 296);
+            label8.Location = new Point(18, 170);
             label8.Name = "label8";
             label8.Size = new Size(88, 20);
             label8.TabIndex = 37;
@@ -268,7 +268,7 @@
             // txtUname
             // 
             txtUname.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            txtUname.Location = new Point(137, 253);
+            txtUname.Location = new Point(137, 125);
             txtUname.Name = "txtUname";
             txtUname.Size = new Size(169, 27);
             txtUname.TabIndex = 38;
@@ -276,7 +276,7 @@
             // txtPassword
             // 
             txtPassword.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            txtPassword.Location = new Point(137, 292);
+            txtPassword.Location = new Point(137, 166);
             txtPassword.Name = "txtPassword";
             txtPassword.Size = new Size(169, 27);
             txtPassword.TabIndex = 39;
