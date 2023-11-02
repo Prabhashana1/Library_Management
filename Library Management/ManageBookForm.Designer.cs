@@ -49,12 +49,13 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
+            textBox1 = new TextBox();
             ((System.ComponentModel.ISupportInitialize)bookDataGridView).BeginInit();
             SuspendLayout();
             // 
             // txtAvaCopies
             // 
-            txtAvaCopies.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            txtAvaCopies.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             txtAvaCopies.Location = new Point(135, 253);
             txtAvaCopies.Name = "txtAvaCopies";
             txtAvaCopies.Size = new Size(169, 27);
@@ -83,12 +84,13 @@
             // 
             btnSearch.BackColor = Color.FromArgb(192, 255, 255);
             btnSearch.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            btnSearch.Location = new Point(242, 46);
+            btnSearch.Location = new Point(227, 14);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(77, 31);
             btnSearch.TabIndex = 57;
             btnSearch.Text = "Search";
             btnSearch.UseVisualStyleBackColor = false;
+            btnSearch.Click += btnSearch_Click;
             // 
             // btnLogout
             // 
@@ -126,6 +128,7 @@
             btnDelete.TabIndex = 54;
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = false;
+            btnDelete.Click += btnDelete_Click;
             // 
             // btnUpdate
             // 
@@ -137,6 +140,7 @@
             btnUpdate.TabIndex = 53;
             btnUpdate.Text = "Update";
             btnUpdate.UseVisualStyleBackColor = false;
+            btnUpdate.Click += btnUpdate_Click;
             // 
             // btnSave
             // 
@@ -148,6 +152,7 @@
             btnSave.TabIndex = 52;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = false;
+            btnSave.Click += btnSave_Click;
             // 
             // bookDataGridView
             // 
@@ -155,17 +160,18 @@
             bookDataGridView.AllowUserToDeleteRows = false;
             bookDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             bookDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            bookDataGridView.Location = new Point(325, 14);
+            bookDataGridView.Location = new Point(325, 48);
             bookDataGridView.Name = "bookDataGridView";
             bookDataGridView.ReadOnly = true;
             bookDataGridView.RowTemplate.Height = 25;
             bookDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            bookDataGridView.Size = new Size(575, 426);
+            bookDataGridView.Size = new Size(575, 392);
             bookDataGridView.TabIndex = 51;
+            bookDataGridView.MouseClick += bookDataGridView_MouseClick;
             // 
             // txtTotCopies
             // 
-            txtTotCopies.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            txtTotCopies.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             txtTotCopies.Location = new Point(135, 206);
             txtTotCopies.Name = "txtTotCopies";
             txtTotCopies.Size = new Size(169, 27);
@@ -173,7 +179,7 @@
             // 
             // txtGenre
             // 
-            txtGenre.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            txtGenre.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             txtGenre.Location = new Point(135, 166);
             txtGenre.Name = "txtGenre";
             txtGenre.Size = new Size(169, 27);
@@ -181,7 +187,7 @@
             // 
             // txtAuthor
             // 
-            txtAuthor.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            txtAuthor.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             txtAuthor.Location = new Point(135, 125);
             txtAuthor.Name = "txtAuthor";
             txtAuthor.Size = new Size(169, 27);
@@ -189,7 +195,7 @@
             // 
             // txtTitle
             // 
-            txtTitle.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            txtTitle.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             txtTitle.Location = new Point(135, 86);
             txtTitle.Name = "txtTitle";
             txtTitle.Size = new Size(169, 27);
@@ -197,10 +203,11 @@
             // 
             // txtBookID
             // 
-            txtBookID.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            txtBookID.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             txtBookID.Location = new Point(135, 48);
             txtBookID.Name = "txtBookID";
-            txtBookID.Size = new Size(101, 27);
+            txtBookID.ReadOnly = true;
+            txtBookID.Size = new Size(169, 27);
             txtBookID.TabIndex = 46;
             // 
             // label6
@@ -265,12 +272,22 @@
             label1.TabIndex = 40;
             label1.Text = "Manage Book";
             // 
+            // textBox1
+            // 
+            textBox1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox1.Location = new Point(327, 11);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(322, 27);
+            textBox1.TabIndex = 61;
+            textBox1.TextChanged += textBox1_TextChanged;
+            // 
             // ManageBookForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(225, 248, 220);
             ClientSize = new Size(910, 457);
+            Controls.Add(textBox1);
             Controls.Add(txtAvaCopies);
             Controls.Add(label8);
             Controls.Add(label7);
@@ -295,6 +312,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "ManageBookForm";
             Text = "ManageBookForm";
+            Load += ManageBookForm_Load;
             ((System.ComponentModel.ISupportInitialize)bookDataGridView).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -323,5 +341,6 @@
         private Label label3;
         private Label label2;
         private Label label1;
+        private TextBox textBox1;
     }
 }

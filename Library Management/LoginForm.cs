@@ -6,6 +6,7 @@ namespace Library_Management
 {
     public partial class LoginForm : Form
     {
+        //connection URL 
         MySqlConnection con = new MySqlConnection("server=127.0.0.1; user=root;database=library; password=");
 
         public LoginForm()
@@ -15,6 +16,7 @@ namespace Library_Management
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
+            //since a background picture is used, it should be put like this.
             label1.Parent = this;
             lblName.Parent = this;
             lblPass.Parent = this;
@@ -33,6 +35,7 @@ namespace Library_Management
 
         private void cBoxPass_CheckedChanged(object sender, EventArgs e)
         {
+            //this condition used to show password option.
             if (cBoxPass.Checked == true)
             {
                 txtPass.UseSystemPasswordChar = false;
@@ -43,15 +46,18 @@ namespace Library_Management
             }
         }
 
+        //login button
         private void btnLogin_Click(object sender, EventArgs e)
         {
-
+            //use tryCatch for error handling.
             try
             {
+                //get value from text box to variable
                 string username = txtName.Text.ToString();
                 string password = txtPass.Text.ToString();
                 string roll = comBoxRoll.SelectedItem.ToString();
 
+                //this condition check all inputs are given
                 if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(roll))
                 {
                     MessageBox.Show("Please Enter User Details Correctly");
@@ -60,16 +66,18 @@ namespace Library_Management
                 }
                 else
                 {
+                    //get data from database.
                     con.Open();
                     MySqlDataAdapter da = new MySqlDataAdapter("select count(*) from "+roll+" where userName='" + username + "' and password = '" + password + "'", con);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
                     if (dt.Rows[0][0].ToString() == "1")
                     {
-
+                        //this switch case use who is login and what show window.
                         switch (roll)
                         {
                             case "administrator":
+                                //create an object for relevent form then show it.
                                 AdminForm adminForm = new AdminForm();
                                 adminForm.ShowDialog();
                                 this.Close();
@@ -82,7 +90,9 @@ namespace Library_Management
                                 break;
 
                             case "member":
-                                MessageBox.Show("member");
+                                MemberForm memberForm = new MemberForm();
+                                memberForm.ShowDialog();
+                                this.Close();
                                 break;
                         }
                     }
@@ -109,6 +119,7 @@ namespace Library_Management
             }
 
         }
+        //this method use clear all inputs boxes
         void txtClear()
         {
             txtName.Text = "";

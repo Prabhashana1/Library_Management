@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace Library_Management
 {
-    public partial class LibrarianForm : Form
+    public partial class MemberForm : Form
     {
-        public LibrarianForm()
+        public MemberForm()
         {
             InitializeComponent();
-        }
-
-        private void LibrarianForm_Load(object sender, EventArgs e)
-        {
-            loadForm(new ManageMemberForm());
         }
 
         public void loadForm(object Form)
@@ -33,9 +28,19 @@ namespace Library_Management
             fr.Show();
         }
 
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MemberForm_Load(object sender, EventArgs e)
+        {
+            loadForm(new ViewMemberForm());
+        }
+
         private void btnMember_Click(object sender, EventArgs e)
         {
-            loadForm(new ManageMemberForm());
+            loadForm(new ViewMemberForm());
             btnMember.BackColor = Color.Tan;
             btnBorrowing.BackColor = Color.DimGray;
             btnBook.BackColor = Color.DimGray;
@@ -43,21 +48,21 @@ namespace Library_Management
 
         private void btnBook_Click(object sender, EventArgs e)
         {
-            loadForm(new ManageBookForm());
+            loadForm(new ViewBookForm());
             btnBook.BackColor = Color.Tan;
-            btnMember.BackColor = Color.DimGray;
             btnBorrowing.BackColor = Color.DimGray;
+            btnMember.BackColor = Color.DimGray;
         }
 
         private void btnBorrowing_Click(object sender, EventArgs e)
         {
-            loadForm(new BorrowingForm());
+            loadForm(new ViewBorrowForm());
             btnBorrowing.BackColor = Color.Tan;
             btnMember.BackColor = Color.DimGray;
             btnBook.BackColor = Color.DimGray;
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
