@@ -50,6 +50,7 @@
             panelLeft.Name = "panelLeft";
             panelLeft.Size = new Size(200, 456);
             panelLeft.TabIndex = 0;
+            panelLeft.Paint += panelLeft_Paint;
             // 
             // pictureBox1
             // 

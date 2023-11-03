@@ -16,23 +16,13 @@ namespace Library_Management
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
-            //since a background picture is used, it should be put like this.
-            label1.Parent = this;
-            lblName.Parent = this;
-            lblPass.Parent = this;
-            cBoxPass.Parent = this;
-            lblLogin.Parent = this;
-            lblCopy.Parent = this;
-            lblRoll.Parent = this;
-            label1.BackColor = Color.Transparent;
-            lblName.BackColor = Color.Transparent;
-            lblPass.BackColor = Color.Transparent;
-            cBoxPass.BackColor = Color.Transparent;
-            lblLogin.BackColor = Color.Transparent;
-            lblCopy.BackColor = Color.Transparent;
-            lblRoll.BackColor = Color.Transparent;
+            //call method for manage background wallpaper items
+            itemBackground();
+            //automatically select default roll "member"
+            comBoxRoll.SelectedIndex = 2;
         }
 
+        //show password 
         private void cBoxPass_CheckedChanged(object sender, EventArgs e)
         {
             //this condition used to show password option.
@@ -98,7 +88,7 @@ namespace Library_Management
                     }
                     else
                     {
-                        MessageBox.Show("Something Wrong !!! ");
+                        MessageBox.Show("User name or Password is Wrong !!! ");
                         txtClear();
                         comBoxRoll.Focus();
                     }
@@ -125,6 +115,25 @@ namespace Library_Management
             txtName.Text = "";
             txtPass.Text = "";
             comBoxRoll.Focus();
+        }
+
+        //since a background picture is used, it should be put like this.
+        void itemBackground()
+        {
+            label1.Parent = this;
+            lblName.Parent = this;
+            lblPass.Parent = this;
+            cBoxPass.Parent = this;
+            lblLogin.Parent = this;
+            lblCopy.Parent = this;
+            lblRoll.Parent = this;
+            label1.BackColor = Color.Transparent;
+            lblName.BackColor = Color.Transparent;
+            lblPass.BackColor = Color.Transparent;
+            cBoxPass.BackColor = Color.Transparent;
+            lblLogin.BackColor = Color.Transparent;
+            lblCopy.BackColor = Color.Transparent;
+            lblRoll.BackColor = Color.Transparent;
         }
     }
 }

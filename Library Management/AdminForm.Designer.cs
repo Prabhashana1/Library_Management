@@ -46,7 +46,9 @@
             btnClear = new Button();
             btnLogout = new Button();
             btnSearch = new Button();
+            fileSystemWatcher1 = new FileSystemWatcher();
             ((System.ComponentModel.ISupportInitialize)userDataGridView).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)fileSystemWatcher1).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -240,6 +242,11 @@
             btnSearch.UseVisualStyleBackColor = false;
             btnSearch.Click += btnSearch_Click;
             // 
+            // fileSystemWatcher1
+            // 
+            fileSystemWatcher1.EnableRaisingEvents = true;
+            fileSystemWatcher1.SynchronizingObject = this;
+            // 
             // AdminForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -269,6 +276,7 @@
             Text = "AdminForm";
             Load += AdminForm_Load;
             ((System.ComponentModel.ISupportInitialize)userDataGridView).EndInit();
+            ((System.ComponentModel.ISupportInitialize)fileSystemWatcher1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -293,5 +301,6 @@
         private Button btnClear;
         private Button btnLogout;
         private Button btnSearch;
+        private FileSystemWatcher fileSystemWatcher1;
     }
 }

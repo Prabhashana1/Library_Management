@@ -145,6 +145,7 @@
             borrowDataGridView.Size = new Size(575, 426);
             borrowDataGridView.TabIndex = 51;
             borrowDataGridView.CellContentClick += borrowDataGridView_CellContentClick;
+            borrowDataGridView.MouseClick += borrowDataGridView_MouseClick;
             // 
             // txtBookID
             // 

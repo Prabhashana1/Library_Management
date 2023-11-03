@@ -21,7 +21,7 @@ namespace Library_Management
         }
 
         MySqlConnection con = new MySqlConnection("server=127.0.0.1; user=root;database=library; password=;convert zero Datetime=True");
-        MySqlCommand cmd;
+        
 
         private void borrowDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -36,7 +36,7 @@ namespace Library_Management
 
         public void gridLoadItem()
         {
-            string selectQuery = "select borrowing.borrowID, borrowing.memberID, member.name, borrowing.bookID, book.title, borrowing.borrowDate, borrowing.returnDate,borrowing.status from borrowing inner join member on borrowing.memberID=member.memberID inner join book on borrowing.bookID=book.bookID";
+            string selectQuery = "select borrow.borrowID, borrow.memberID, member.name, borrow.bookID, book.title, borrow.borrowDate, borrow.returnDate,borrow.status from borrow inner join member on borrow.memberID=member.memberID inner join book on borrow.bookID=book.bookID";
             DataTable table = new DataTable();
             MySqlDataAdapter adapter = new MySqlDataAdapter(selectQuery, con);
             adapter.Fill(table);
@@ -46,13 +46,13 @@ namespace Library_Management
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            string insertQuery = "INSERT INTO borrowing (memberID,bookID,borrowDate) VALUES ('" + txtMemberID.Text + "','" + txtBookID.Text + "','" + dtPickBorrow.Text + "')";
+            string insertQuery = "INSERT INTO borrow (memberID,bookID,borrowDate) VALUES ('" + txtMemberID.Text + "','" + txtBookID.Text + "','" + dtPickBorrow.Text + "')";
             string bookDecrement = "update book set availableCopies = availableCopies -1 where bookID ='" + int.Parse(txtBookID.Text) + "'";
             exeQuery(insertQuery, "Insert");
             try
             {
                 openCon();
-                cmd = new MySqlCommand(bookDecrement, con);
+                MySqlCommand cmd = new MySqlCommand(bookDecrement, con);
 
                 if (cmd.ExecuteNonQuery() == 1)
                 {
@@ -96,7 +96,7 @@ namespace Library_Management
             try
             {
                 openCon();
-                cmd = new MySqlCommand(query, con);
+                MySqlCommand cmd = new MySqlCommand(query, con);
 
                 if (cmd.ExecuteNonQuery() == 1)
                 {
@@ -134,7 +134,7 @@ namespace Library_Management
                 DialogResult result = MessageBox.Show("Do you want to delete this ?", "Warning!!!", buttons);
                 if (result == DialogResult.Yes)
                 {
-                    string deleteQuery = "delete from borrowing where borrowID =" + int.Parse(txtborrowID.Text);
+                    string deleteQuery = "delete from borrow where borrowID =" + int.Parse(txtborrowID.Text);
                     exeQuery(deleteQuery, "Delete");
                     gridLoadItem();
                     //txtClear();
@@ -158,7 +158,7 @@ namespace Library_Management
                 DialogResult result = MessageBox.Show("Do you want to return this ?", "Warning!!!", buttons);
                 if (result == DialogResult.Yes)
                 {
-                    string updateQuery = "UPDATE borrowing SET  status='Completed',returnDate= '" + dtPickReturn.Text + "' WHERE borrowID=" + int.Parse(txtborrowID.Text);
+                    string updateQuery = "UPDATE borrow SET  status='Completed',returnDate= '" + dtPickReturn.Text + "' WHERE borrowID=" + int.Parse(txtborrowID.Text);
                     exeQuery(updateQuery, "Return");
                     gridLoadItem();
                     string bookIncrement = "update book set availableCopies = availableCopies +1 where bookID ='" + int.Parse(txtBookID.Text) + "'";
@@ -166,7 +166,7 @@ namespace Library_Management
                     try
                     {
                         openCon();
-                        cmd = new MySqlCommand(bookIncrement, con);
+                        MySqlCommand cmd = new MySqlCommand(bookIncrement, con);
 
                         if (cmd.ExecuteNonQuery() == 1)
                         {
@@ -200,7 +200,7 @@ namespace Library_Management
             {
 
                 MySqlDataReader dr;
-                cmd = new MySqlCommand("select * from borrowing where borrowID= " + txtborrowID.Text, con);
+                MySqlCommand cmd = new MySqlCommand("select * from borrow where borrowID= " + txtborrowID.Text, con);
                 openCon();
                 dr = cmd.ExecuteReader();
 
@@ -230,6 +230,15 @@ namespace Library_Management
             {
                 closeCon();
             }
+        }
+
+        private void borrowDataGridView_MouseClick(object sender, MouseEventArgs e)
+        {
+            txtborrowID.Text = borrowDataGridView.CurrentRow.Cells[0].Value.ToString();
+            txtMemberID.Text = borrowDataGridView.CurrentRow.Cells[1].Value.ToString();
+            txtBookID.Text = borrowDataGridView.CurrentRow.Cells[3].Value.ToString();
+            dtPickBorrow.Text = borrowDataGridView.CurrentRow.Cells[5].Value.ToString();
+            dtPickReturn.Text = borrowDataGridView.CurrentRow.Cells[6].Value.ToString();
         }
     }
 }

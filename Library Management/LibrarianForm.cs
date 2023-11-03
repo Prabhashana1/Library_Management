@@ -61,5 +61,10 @@ namespace Library_Management
         {
 
         }
+
+        private void panelLeft_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

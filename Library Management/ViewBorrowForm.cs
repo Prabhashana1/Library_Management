@@ -27,11 +27,16 @@ namespace Library_Management
 
         public void gridLoadItem()
         {
-            string selectQuery = "select borrowing.borrowID, borrowing.memberID, member.name, borrowing.bookID, book.title, borrowing.borrowDate, borrowing.returnDate from borrowing inner join member on borrowing.memberID=member.memberID inner join book on borrowing.bookID=book.bookID";
+            string selectQuery = "select borrow.borrowID, borrow.memberID, member.name, borrow.bookID, book.title, borrow.borrowDate, borrow.returnDate, borrow.status from borrow inner join member on borrow.memberID=member.memberID inner join book on borrow.bookID=book.bookID";
             DataTable table = new DataTable();
             MySqlDataAdapter adapter = new MySqlDataAdapter(selectQuery, con);
             adapter.Fill(table);
             viewBorrowDataGridView.DataSource = table;
+
+        }
+
+        private void viewBorrowDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
         }
     }

@@ -20,7 +20,7 @@ namespace Library_Management
         }
 
         MySqlConnection con = new MySqlConnection("server=127.0.0.1; user=root;database=library; password=");
-        MySqlCommand cmd;
+        
 
 
         private void ManageMemberForm_Load(object sender, EventArgs e)
@@ -60,7 +60,7 @@ namespace Library_Management
             try
             {
                 openCon();
-                cmd = new MySqlCommand(query, con);
+                MySqlCommand cmd = new MySqlCommand(query, con);
 
                 if (cmd.ExecuteNonQuery() == 1)
                 {
@@ -90,7 +90,7 @@ namespace Library_Management
         private void btnSearch_Click(object sender, EventArgs e)
         {
             MySqlDataReader dr;
-            cmd = new MySqlCommand("select * from member where memberID= " + txtMemberID.Text, con);
+            MySqlCommand cmd = new MySqlCommand("select * from member where memberID= " + txtMemberID.Text, con);
             openCon();
             dr = cmd.ExecuteReader();
 

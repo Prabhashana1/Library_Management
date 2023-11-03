@@ -45,6 +45,7 @@
             viewBorrowDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             viewBorrowDataGridView.Size = new Size(776, 426);
             viewBorrowDataGridView.TabIndex = 53;
+            viewBorrowDataGridView.CellContentClick += viewBorrowDataGridView_CellContentClick;
             // 
             // ViewBorrowForm
             // 
